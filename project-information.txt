@@ -1,0 +1,61 @@
+1) Insert below the student numbers and names of the 1-3 group members, one per line
+
+...
+
+	729831 - Gabriele Salvo
+	663175 - Jiayan Yang
+2) Write below the name of your group
+
+...
+
+
+	SY
+3) Write below a short description of the machine learning problem you plan to address
+
+...
+
+
+	We will cover the topic of Natural Language Processing and we will implement a Deep Learning model that can recognize and predict the rating of reviews from Amazon. In particular we are aiming at classifying reviews from Amazon Instant Video. The dataset consists of 37.126 reviews, each one labeled with a rating number from 1 to 5. The model will take the all review as an input and will give it a rating. We will use several metric to ensure the performance of our model, such as training and test loss, and accuracy, as we are deploying a classification problem.
+4) Write below what deep learning approach(es) you plan to employ in your project
+
+...
+	We will try to use several NLP approaches in order to embed the words to a vector dimensionality: word2vec, gloVe or the brand-new BERT, in order to map the embeddings to the review itself. 
+
+
+5) Write below what deep learning software you plan to use in your project
+
+...
+
+
+	We will implement our algorithm using the framework PyTorch, in addition we plan to use some ready-made models from https://github.com/songyouwei/ABSA-PyTorch . In this repository, there are several papers that implement the Aspect-based sentiment classification, but, as we are dealing with one aspect for each review, we want to modify the source code, so that we will handle this special case.
+6) Write below what computational resources you plan to utilize in your project
+
+...
+
+	We will try to run our notebooks in our computers. If this is not enough then we will use GPUs from google colab or resources from Paniikki.
+
+
+7) Write below what kind of data you plan to use in your experiments
+
+...
+
+	We are going to use the data from:				http://snap.stanford.edu/data/amazon/productGraph/categoryFiles/reviews_Amazon_Instant_Video_5.json.gz
+	Here is an example of the json file:
+		{"reviewerID": "A36EKEC9C4P2QH", 
+		"asin": "B000HAB4NK", 
+		"reviewerName": "Pania Kiranos \"Ladydragon\"",
+ 		"helpful": [2, 2], 
+		"reviewText": "Season Five was the winner!  Of course, Kiefer and the regular cast absolutely 						rock, it was fantastic to see as much of Agent Pierce as we did this season, and Gregory Itzen and Jean 				Smart...... well, what can I say about them other than === shoulda won the Emmys!!!", 
+		"overall": 5.0, 
+		"summary": "Go JACK!", 
+		"unixReviewTime": 1183766400, 
+		"reviewTime": "07 7, 2007"}
+
+
+
+8) Write below what are the reference methods and results you plan to compare against
+
+...
+
+	Song, Youwei, et al. "Attentional Encoder Network for Targeted Sentiment Classification." arXiv preprint 	arXiv:1902.09314 (2019)  https://arxiv.org/pdf/1902.09314.pdf
+	Devlin, Jacob, et al. "Bert: Pre-training of deep bidirectional transformers for language understanding." arXiv preprint 	arXiv:1810.04805 (2018). https://arxiv.org/pdf/1810.04805.pdf
