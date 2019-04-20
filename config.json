@@ -7,7 +7,7 @@
         "args": {}
     },
     "data_loader": {
-        "type": "MnistDataLoader",
+        "type": "AmznDataLoader",
         "args":{
             "data_dir": "data/",
             "batch_size": 128,
@@ -20,8 +20,7 @@
         "type": "Adam",
         "args":{
             "lr": 0.001,
-            "weight_decay": 0,
-            "amsgrad": true
+            "weight_decay": 0
         }
     },
     "loss": "nll_loss",
