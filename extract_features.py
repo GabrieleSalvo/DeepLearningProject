@@ -201,7 +201,7 @@ def main():
     ## Other parameters
     parser.add_argument("--do_lower_case", action='store_true', help="Set this flag if you are using an uncased model.")
     parser.add_argument("--layers", default="-1,-2,-3,-4", type=str)
-    parser.add_argument("--max_seq_length", default=128, type=int,
+    parser.add_argument("--max_seq_length", default=60, type=int,
                         help="The maximum total input sequence length after WordPiece tokenization. Sequences longer "
                             "than this will be truncated, and sequences shorter than this will be padded.")
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size for predictions.")
