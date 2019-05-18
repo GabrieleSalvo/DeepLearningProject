@@ -14,9 +14,9 @@ class ReviewModel(nn.Module):
         self.batch_size = paramDict["batch_size"]
         self.embed_size = paramDict["embedding_dim"]
         if paramDict['random']:
-            self.embedding = nn.Embedding(weights_matrix.shape[0], weights_matrix.shape[1])
+            self.embedding = nn.Embedding(weights_matrix.shape[0], weights_matrix.shape[1]).double()
         else:
-            self.embedding = nn.Embedding.from_pretrained(torch.tensor(weights_matrix), freeze=False)
+            self.embedding = nn.Embedding.from_pretrained(torch.tensor(weights_matrix), freeze=False).double()
         
         self.drop1 = nn.Dropout(p=paramDict["first_dropout"])
         self.conv1 = nn.Conv1d(in_channels = paramDict["conv_input_channel"],
