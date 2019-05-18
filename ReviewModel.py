@@ -34,7 +34,6 @@ class ReviewModel(nn.Module):
                           hidden_size=paramDict["rnn_hidden_size"],
                           num_layers=paramDict["rnn_num_layers"], 
                           batch_first=False) 
-        self.flatten = Flatten()
         
         self.fc1 =nn.Linear(in_features=paramDict["first_dense_in"], 
                             out_features = paramDict["first_dense_out"])
@@ -85,8 +84,3 @@ class ReviewModel(nn.Module):
         x = self.fc2(x)
         # x_size = (batch_size, out_dim)
         return x
-
-class Flatten(nn.Module):
-    def forward(self, x):
-        x = x.view(x.size()[0], -1)
-        return x    

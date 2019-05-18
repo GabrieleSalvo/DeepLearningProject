@@ -17,29 +17,36 @@ class AmznDataLoader:
             #processing for the multilabeled dataset
             if ".json.gz" in path:
                 df = self.getDF(path)
-                df = df[['reviewText', 'overall']]
-                
-                df['reviewText'] = df['reviewText'].apply(lambda x : self.title_parsing(x))
-                
-                X = df['reviewText']
                 y = df['overall']-1
-                
-                self.weight_matrix = self.get_weight_matrix(X)
-                X = self.indicesMatrix(X)
-                
-                self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            #pre-processing for the ss2 dataset
             else:
-                df1 = pd.read_fwf("./data/ss2Train.txt",names = ["overall","reviewText"], index_col = False)
-                df2 = pd.read_fwf("./data/ss2Test.txt",names = ["overall","reviewText"], index_col = False)
+                df = pd.read_fwf("./data/sst2.txt",names = ["overall","reviewText"], index_col = False)
+                y = df['overall']
                 
-                df['reviewText'] = df['reviewText'].apply(lambda x : self.title_parsing(x))
+            self.info = df.head()    
+            
+            df = df[['reviewText', 'overall']]
                 
-                X_train = df['reviewText']
-                self.y_train = df['overall']
-                self.weight_matrix = self.get_weight_matrix(X_train)
+            df['reviewText'] = df['reviewText'].apply(lambda x : self.title_parsing(x))
+                
+            X = df['reviewText']
+            
+                
+            self.weight_matrix = self.get_weight_matrix(X)
+            X = self.indicesMatrix(X)
+                
+            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#             #pre-processing for the ss2 dataset
+#             else:
+                
+#                 df2 = pd.read_fwf("./data/ss2Test.txt",names = ["overall","reviewText"], index_col = False)
+                
+#                 df['reviewText'] = df['reviewText'].apply(lambda x : self.title_parsing(x))
+                
+#                 X_train = df['reviewText']
+#                 self.y_train = df['overall']
+#                 self.weight_matrix = self.get_weight_matrix(X_train)
 
-                self.X_train = self.indicesMatrix(X_train)  
+#                 self.X_train = self.indicesMatrix(X_train)  
                 
             np.save("weightmatrix.npy",self.weight_matrix)
         
@@ -152,15 +159,11 @@ class AmznDataLoader:
             target_vocab = self.buildCorpus(X)
             matrix_len = len(target_vocab)
             weights_matrix = np.zeros((matrix_len, embed_size))
-            words_found = 0
-            words_not_found = 0
             #for each word in the corpus we either find the corrispective embedding or we assign it random embedding values
             for i, word in enumerate(target_vocab):
                 try: 
                     weights_matrix[i] = glove[word]
-                    words_found += 1
                 except KeyError:
-                    words_not_found += 1
                     weights_matrix[i] = np.random.normal(scale=0.6, size=(embed_size,))
                     
             return  weights_matrix
