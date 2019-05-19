@@ -81,7 +81,8 @@ class AmznDataLoader:
             list: a list of words in text
             ''' 
             sentence = re.sub('[^a-zA-Z]', ' ', str(sentence)).lower()
-            tokens = remove_stopwords(sentence).split()          
+            # tokens = remove_stopwords(sentence).split()   
+            tokens = sentence.split()
             tokens = [word for word in tokens if len(word) >1 ]
             
             return tokens
